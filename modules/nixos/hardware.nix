@@ -32,12 +32,13 @@ in
       hardware.opengl = {
         enable = true;
         driSupport = true;
+        extraPackages = [ pkgs.ocl-icd ];
       };
 
       environment = {
         systemPackages = with pkgs; [
+          opencl-info
           libva-utils
-          glxinfo
           vulkan-tools
         ];
         sessionVariables = {
