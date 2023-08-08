@@ -2,7 +2,6 @@
 
 let
   vscodium = pkgs.vscodium-fhsWithPackages (pkgs: with pkgs; [
-    rnix-lsp
     nixpkgs-fmt
 
     python3
@@ -37,6 +36,7 @@ in
     package = vscodium;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
+    mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
       pkief.material-icon-theme
       vscodevim.vim
@@ -61,7 +61,6 @@ in
       "files.enableTrash" = false;
       "files.autoSave" = "onFocusChange";
 
-      "nix.enableLanguageServer" = true;
       "python.languageServer" = "Pylance";
     } // lib.optionalAttrs config.want.zsh {
       "terminal.integrated.defaultProfile.linux" = "zsh";
