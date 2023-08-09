@@ -35,13 +35,6 @@ let
       (set [ "Module-ksysguard" ] [ [ "autoload" "false" ] ])
     ];
 
-    "plasmashellrc" = [
-      (set [ "PlasmaViews" "Panel 2" ] [
-        [ "panelOpacity" "2" ]
-        [ "panelVisibility" "1" ]
-      ])
-    ];
-
     "kwinrc" = [
       (set [ "Input" ] [ [ "TabletMode" "off" ] ])
       (set [ "Plugins" ] [
@@ -82,10 +75,6 @@ let
       ])
     ];
 
-    "kactivitymanagerd-statsrc" = [
-      (set [ "Favorites-org.kde.plasma.kickoff.favorites.instance-3-global" ] [ [ "ordering" "firefox.desktop" ] ])
-    ];
-
     "kactivitymanagerd-pluginsrc" = [
       (set [ "Plugin-org.kde.ActivityManager.Resources.Scoring" ] [ [ "what-to-remember" "1" ] ])
     ];
@@ -106,10 +95,6 @@ let
       (set [ "PlacesPanel" ] [ [ "IconSize" "32" ] ])
       (set [ "DetailsMode" ] [ [ "IconSize" "32" ] ])
       (set [ "PreviewSettings" ] [ [ "Plugins" "svgthumbnail" ] ])
-    ];
-
-    "plasma-org.kde.plasma.desktop-appletsrc" = [
-      (set [ "Containments" "2" "Applets" "5" "Configuration" "General" ] [ [ "launchers" "preferred://filemanager" ] ])
     ];
   };
 
