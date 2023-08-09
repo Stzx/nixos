@@ -3,7 +3,7 @@
 let
   cfg = config.want;
 
-  command = "${pkgs.libsForQt5.kconfig}/bin/kwriteconfig5";
+  command = "${pkgs.plasma5Packages.kconfig}/bin/kwriteconfig5";
 
   directory = "${config.home.homeDirectory}/.config";
 
@@ -16,7 +16,7 @@ let
       key = if onlyKey then item else builtins.elemAt item 0;
       value = if onlyKey then "--delete" else builtins.elemAt item 1;
     in
-    "${lib.concatMapStringsSep " " (g: "--group '${g}'") groups}--key ${key} ${value}"
+    "${lib.concatMapStringsSep " " (g: "--group '${g}'") groups} --key ${key} ${value}"
   );
 
   set = groups: kv: mkArgs { inherit groups kv; };
