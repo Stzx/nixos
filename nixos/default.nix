@@ -70,6 +70,7 @@ in
       lsof
       tree
       gptfdisk
+      graphviz
       p7zip
     ];
     shellAliases = lib.mkForce {

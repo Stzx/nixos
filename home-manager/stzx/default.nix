@@ -29,7 +29,6 @@
 
   want = {
     adb = true;
-    scrcpy = true;
     nmap = true;
     secret = true;
   };
