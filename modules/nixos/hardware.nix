@@ -71,11 +71,13 @@ in
         powerManagement.enable = true;
       };
 
-      # FIXME: https://github.com/elFarto/nvidia-vaapi-driver
       environment.sessionVariables = {
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
         GBM_BACKEND = "nvidia-drm";
+
+        # FIXME: https://github.com/elFarto/nvidia-vaapi-driver
+        NVD_BACKEND = "direct";
         LIBVA_DRIVER_NAME = "nvidia";
 
         MOZ_DISABLE_RDD_SANDBOX = "1";

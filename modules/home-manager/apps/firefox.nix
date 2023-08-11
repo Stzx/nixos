@@ -115,10 +115,12 @@ in
     # FIXME: https://github.com/elFarto/nvidia-vaapi-driver
     (lib.mkIf useNvidia {
       programs.firefox.profiles.${profile}.settings = {
-        "gfx.x11-egl.force-enabled" = true;
-
         "media.ffmpeg.vaapi.enabled" = true;
         "media.rdd-ffmpeg.enabled" = true;
+
+        "gfx.x11-egl.force-enabled" = true;
+
+        "widget.dmabuf.force-enabled" = true;
       };
     })
   ];
