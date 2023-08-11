@@ -69,6 +69,8 @@ in
     packages = with pkgs; [
       flex
       bison
+
+      python3
     ];
 
     nativeBuildInputs = with pkgs; [ pkg-config ];

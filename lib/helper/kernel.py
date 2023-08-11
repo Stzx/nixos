@@ -9,7 +9,7 @@ y_or_m = re.compile(r'^< CONFIG_(\w+)=[ym]$', re.MULTILINE)
 is_not_set = re.compile(r'^> # CONFIG_(\w+) is not set$', re.MULTILINE)
 
 def cwdFile(name):
-    os.path.join(os.getcwd(), name)
+    return os.path.join(os.getcwd(), name)
 
 def intersection(x, y):
     return [e for e in x if e in y]
