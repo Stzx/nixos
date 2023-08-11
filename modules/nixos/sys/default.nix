@@ -5,6 +5,11 @@
     ./netdata.nix
   ];
 
+  console = {
+    font = "LatGrkCyr-8x16";
+    earlySetup = true;
+  };
+
   security.apparmor.enable = lib.mkDefault true;
 
   security.rtkit.enable = lib.mkDefault true;

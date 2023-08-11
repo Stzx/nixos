@@ -14,7 +14,7 @@ in
       kernelModules = [ "sha256" ];
     };
     kernelModules = lib.mkForce [ ];
-    kernelParams = [ "fbcon=font:VGA8x16" ];
+    kernelParams = [ ];
     supportedFilesystems = [ "f2fs" ];
     kernel.sysctl = { };
     kernelPatches = mkPatchs [
