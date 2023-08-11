@@ -1,6 +1,6 @@
 { force, u, ... }:
 
-# 用于修复组合错误
+# 用于修复合并错误
 {
   "9P_FS" = force u;
   AMILO_RFKILL = force u;

@@ -1,6 +1,8 @@
 { default, force, y, n, u, m, ff, ... }:
 
-{ } // {
+{
+  BPFILTER = force y;
+} // {
   NET_DSA = default n;
   VLAN_8021Q = default n;
   ATALK = default n;

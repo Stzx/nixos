@@ -3,10 +3,14 @@
 {
   MZEN = force y;
 } // {
+  CPU_SUP_INTEL = default n;
+  CPU_SUP_HYGON = default n;
+  CPU_SUP_CENTAUR = default n;
+  CPU_SUP_ZHAOXIN = default n;
+
   X86_INTEL_LPSS = default n;
   IOSF_MBI = default n;
   X86_MCE_INTEL = default n;
-  MICROCODE_INTEL = default n;
   INTEL_SOC_DTS_THERMAL = default n;
   INT340X_THERMAL = default n;
   DRM_I915 = default n;
@@ -19,6 +23,8 @@
 } // {
   DRM_I915_GVT = force u;
   DRM_I915_GVT_KVMGT = force u;
+  INTEL_IDLE = force u;
+  MICROCODE_INTEL = force u;
   SND_SOC_INTEL_SOUNDWIRE_SOF_MACH = force u;
   SND_SOC_INTEL_USER_FRIENDLY_LONG_NAMES = force u;
   SND_SOC_SOF_APOLLOLAKE = force u;

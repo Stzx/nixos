@@ -828,8 +828,6 @@
   SERIAL_MULTI_INSTANTIATE = default n;
   MLX_PLATFORM = default n;
   X86_ANDROID_TABLETS = default n;
-  INTEL_IPS = default n;
-  INTEL_SCU_PLATFORM = default n;
   SIEMENS_SIMATIC_IPC = default n;
   WINMATE_FM07_KEYS = default n;
   USB4 = default n;

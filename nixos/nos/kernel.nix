@@ -24,7 +24,14 @@ in
       }
       { name = "network"; }
       { name = "fs"; }
-      { name = "drivers/device"; }
+      {
+        name = "misc";
+        suffixes = [ "amd" ];
+      }
+      {
+        name = "drivers/device";
+        suffixes = [ "amd" ];
+      }
       { name = "drivers/network"; }
       {
         name = "drivers/drm";
@@ -32,7 +39,7 @@ in
       }
       { name = "drivers/snd"; }
 
-      { name = "_kernel"; }
+      { name = "soothe-victim"; }
     ];
   };
 
