@@ -83,6 +83,10 @@ let
       (set [ "Plugins" ] [ [ "org.kde.ActivityManager.ResourceScoringEnabled" "false" ] ])
     ];
 
+    "kwalletrc" = [
+      (set [ "Wallet" ] [ [ "Enabled" "false" ] ])
+    ];
+
     "breezerc" = [
       (set [ "Common" ] [
         [ "ShadowSize" "ShadowSmall" ]

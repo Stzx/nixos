@@ -45,7 +45,6 @@ in
     };
 
     # FIXME: https://github.com/NixOS/nixpkgs/pull/244789
-    systemd.services.netdata.environment.NETDATA_PIPENAME = "/tmp/netdata-ipc";
     systemd.services.netdata.serviceConfig.ExecStartPost = lib.mkForce (pkgs.writeShellScript "wait-for-netdata-up" ''
       while [ ! -e "$NETDATA_PIPENAME" ] || [ "$(${netdata}/bin/netdatacli ping)" != "pong" ]; do sleep 0.5; done
     '');

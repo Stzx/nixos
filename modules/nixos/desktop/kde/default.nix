@@ -51,9 +51,7 @@ in
       fcitx5.addons = [ pkgs.fcitx5-chinese-addons ];
     };
 
-    environment.sessionVariables = {
-      GTK_USE_PORTAL = "true";
-    };
+    xdg.portal.xdgOpenUsePortal = true;
 
     programs.dconf.enable = true;
   };

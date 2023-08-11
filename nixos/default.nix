@@ -42,17 +42,12 @@ in
 
   time.timeZone = lib.mkDefault "Asia/Shanghai";
 
-  systemd = {
-    extraConfig = "DefaultTimeoutStopSec=60s";
-    network.wait-online.extraArgs = [ "--any" ];
-  };
-
-  security = {
-    apparmor.enable = lib.mkDefault true;
-    rtkit.enable = lib.mkDefault true;
-  };
-
   users.mutableUsers = lib.mkForce false;
+
+  systemd = {
+    network.wait-online.extraArgs = [ "--any" ];
+    extraConfig = "DefaultTimeoutStopSec=60s";
+  };
 
   networking.firewall.extraPackages = with pkgs; [
     bind

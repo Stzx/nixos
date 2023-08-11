@@ -92,6 +92,7 @@
   BACKLIGHT_ARCXCNN = default n;
   BACKLIGHT_RAVE_SP = default n;
 } // {
+  DRM_DP_AUX_CHARDEV = force u;
   DRM_PANEL_RASPBERRYPI_TOUCHSCREEN = force u;
   DRM_VMWGFX_FBCON = force u;
   DRM_XEN_FRONTEND = force u;
