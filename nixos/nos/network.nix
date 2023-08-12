@@ -51,5 +51,10 @@ in
     };
   };
 
-  services.timesyncd.enable = true;
+  networking.timeServers = HOP;
+
+  services = {
+    resolved.enable = true;
+    timesyncd.enable = true;
+  };
 }

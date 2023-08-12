@@ -45,8 +45,8 @@ in
   users.mutableUsers = lib.mkForce false;
 
   systemd = {
-    network.wait-online.extraArgs = [ "--any" ];
     extraConfig = "DefaultTimeoutStopSec=60s";
+    network.wait-online.anyInterface = true;
   };
 
   networking.firewall.extraPackages = with pkgs; [
