@@ -16,7 +16,7 @@ let
       key = if onlyKey then item else builtins.elemAt item 0;
       value = if onlyKey then "--delete" else builtins.elemAt item 1;
     in
-    "${lib.concatMapStringsSep " " (g: "--group '${g}'") groups} --key ${key} ${value}"
+    "${lib.concatMapStringsSep " " (g: "--group '${g}'") groups} --key ${key} '${value}'"
   );
 
   set = groups: kv: mkArgs { inherit groups kv; };
@@ -49,6 +49,22 @@ let
         [ "Name_2" "Jerry" ]
       ])
     ];
+
+    "kdeglobals" =
+      let
+        default = "Sarasa UI SC,10,-1,5,50,0,0,0,0,0";
+        mono = "Sarasa Fixed SC,10,-1,5,50,0,0,0,0,0";
+      in
+      [
+        (set [ "General" ] [
+          [ "fixed" mono ]
+          [ "font" default ]
+          [ "menuFont" default ]
+          [ "smallestReadableFont" default ]
+          [ "toolBarFont" default ]
+          [ "activeFont" default ]
+        ])
+      ];
 
     "kdeglobalsrc" = [
       (set [ "General" ] [ [ "UseSystemBell" "true" ] ])
