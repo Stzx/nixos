@@ -11,11 +11,12 @@
         noto-fonts-cjk-sans
         noto-fonts-emoji
 
-        sarasa-gothic
-
         jetbrains-mono
 
         material-icons
+
+        iosevka-bin
+        liberation_ttf
       ];
       fontconfig = {
         enable = true;
@@ -29,11 +30,6 @@
             "Noto Serif CJK KR"
           ];
           sansSerif = [
-            "Sarasa Gothic SC"
-            "Sarasa Gothic TC"
-            "Sarasa Gothic J"
-            "Sarasa Gothic K"
-
             "Noto Sans"
             "Noto Sans CJK SC"
             "Noto Sans CJK TC"
@@ -41,11 +37,6 @@
             "Noto Sans CJK KR"
           ];
           monospace = [
-            "Sarasa Mono SC"
-            "Sarasa Mono TC"
-            "Sarasa Mono J"
-            "Sarasa Mono K"
-
             "Noto Sans Mono"
             "Noto Sans Mono CJK SC"
             "Noto Sans Mono CJK TC"

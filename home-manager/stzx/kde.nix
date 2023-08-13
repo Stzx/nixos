@@ -52,8 +52,8 @@ let
 
     "kdeglobals" =
       let
-        default = "Sarasa UI SC,10,-1,5,50,0,0,0,0,0";
-        mono = "Sarasa Fixed SC,10,-1,5,50,0,0,0,0,0";
+        default = "Noto Sans,10,-1,5,50,0,0,0,0,0";
+        mono = "Noto Sans Mono,10,-1,5,50,0,0,0,0,0";
       in
       [
         (set [ "General" ] [
@@ -62,8 +62,8 @@ let
           [ "menuFont" default ]
           [ "smallestReadableFont" default ]
           [ "toolBarFont" default ]
-          [ "activeFont" default ]
         ])
+        (set [ "WM" ] [ [ "activeFont" default ] ])
       ];
 
     "kdeglobalsrc" = [
@@ -101,6 +101,10 @@ let
 
     "kwalletrc" = [
       (set [ "Wallet" ] [ [ "Enabled" "false" ] ])
+    ];
+
+    "kcminputrc" = [
+      (set [ "Keyboard" ] [ [ "NumLock" "0" ] ])
     ];
 
     "breezerc" = [
