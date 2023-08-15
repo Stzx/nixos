@@ -27,6 +27,7 @@ in
           settings = {
             "browser.aboutConfig.showWarning" = false;
 
+            "browser.cache.memory.capacity" = 1048576;
             "browser.cache.disk.enable" = false;
             "browser.cache.disk_cache_ssl" = false;
 
