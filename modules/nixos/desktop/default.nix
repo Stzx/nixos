@@ -15,7 +15,11 @@
 
         material-icons
 
-        iosevka-bin
+        iosevka-comfy.comfy
+        iosevka-comfy.comfy-motion
+        iosevka-comfy.comfy-wide
+        iosevka-comfy.comfy-wide-motion
+
         liberation_ttf
       ];
       fontconfig = {

@@ -16,7 +16,7 @@ in
         enable = true;
         theme = "Monokai";
         extraConfig = ''
-          font_family JetBrains Mono
+          font_family Iosevka Comfy Wide Motion
 
           background_opacity 0.8
 
