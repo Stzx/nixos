@@ -2,6 +2,8 @@
 
 let
   inherit (secrets) flake;
+
+  nixosDiff = "nix profile diff-closures --profile /nix/var/nix/profiles/system";
 in
 {
   nix = {
@@ -57,25 +59,27 @@ in
   environment = {
     systemPackages = with pkgs; [
       smartmontools
+      acpitool
       nvme-cli
       pciutils
       usbutils
 
-      age
       lsof
       tree
+      file
+
       gptfdisk
       graphviz
       p7zip
     ];
     shellAliases = lib.mkForce {
-      re-boot = ''time sudo nixos-rebuild boot --flake "${flake}?submodules=1#$(hostname)" && nix profile diff-closures --profile /nix/var/nix/profiles/system'';
+      rb = ''time sudo nixos-rebuild boot --flake "${flake}?submodules=1#$(hostname)" && ${nixosDiff}'';
 
-      re-root = ''time sudo nixos-rebuild switch --flake "${flake}?submodules=1#$(hostname)" && nix profile diff-closures --profile /nix/var/nix/profiles/system'';
+      rr = ''time sudo nixos-rebuild switch --flake "${flake}?submodules=1#$(hostname)" && ${nixosDiff}'';
 
-      re-home = ''time home-manager switch --flake "${flake}?submodules=1#$USER@$(hostname)" && nix profile diff-closures'';
+      rh = ''time home-manager switch --flake "${flake}?submodules=1#$USER@$(hostname)" && nix profile diff-closures'';
 
-      init-home = ''time nix run home-manager -- switch --flake "${flake}?submodules=1#$USER@$(hostname)"'';
+      ih = ''time nix run home-manager -- switch --flake "${flake}?submodules=1#$USER@$(hostname)"'';
     };
   };
 

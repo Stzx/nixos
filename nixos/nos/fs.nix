@@ -10,12 +10,12 @@ let
   f2fsUnit = f2fsMountUnit secrets.disks.f2fs;
 in
 {
+  zramSwap.enable = true;
+
   systemd = {
     mounts = btrfsUnit.mounts ++ f2fsUnit.mounts;
     automounts = btrfsUnit.automounts ++ f2fsUnit.automounts;
   };
-
-  zramSwap.enable = true;
 
   virtualisation.docker.storageDriver = "btrfs";
 } // {

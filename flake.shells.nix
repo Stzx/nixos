@@ -25,8 +25,6 @@ let
     targetPkgs = pkgs: with pkgs;[
       idea
 
-      temurin-bin-17
-
       python3
 
       rustup
@@ -46,21 +44,21 @@ in
 {
   default = llvmShell {
     packages = with pkgs;[
-      lld
-      lldb
-
       sqlite
 
-      graphviz
+      temurin-bin-17
 
       fhs
     ];
 
-    nativeBuildInputs = with pkgs; [ pkg-config ];
+    nativeBuildInputs = with pkgs; [
+      lld
+      lldb
+
+      pkg-config
+    ];
 
     buildInputs = with pkgs; [
-      llvm.libclang
-
       pipewire
     ];
   };

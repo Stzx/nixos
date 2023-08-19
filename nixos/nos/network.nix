@@ -22,12 +22,8 @@ in
 
   networking = {
     useDHCP = lib.mkForce false;
-    extraHosts = ''
-    '';
     nftables.enable = true;
-    firewall = {
-      enable = true;
-    };
+    firewall.enable = true;
   };
 
   systemd.network = {
