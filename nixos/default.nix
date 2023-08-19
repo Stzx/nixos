@@ -86,19 +86,6 @@ in
     pinentryFlavor = "curses";
   };
 
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-    defaultEditor = true;
-    configure = {
-      customRC = ''
-        set number
-        set relativenumber
-        set expandtab
-      '';
-    };
-  };
-
   programs.htop = {
     enable = true;
     settings = {

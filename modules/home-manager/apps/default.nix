@@ -7,5 +7,8 @@
     ./secret.nix
 
     ./zsh.nix
+
+    ./editors/nvim.nix
+    ./editors/vscodium.nix
   ];
 }

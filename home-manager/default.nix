@@ -30,8 +30,11 @@
 
   want = {
     zsh = true;
+
     kitty = true;
 
     firefox = true;
+
+    nvim = true;
   };
 }
