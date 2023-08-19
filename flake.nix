@@ -25,9 +25,9 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, disko, ... } @ args:
+  outputs = { self, nixpkgs, home-manager, flake-utils, disko, ... }:
     let
-      legacyPackages = nixpkgs.legacyPackages;
+      _pkgs = nixpkgs.legacyPackages.${defaultSystem};
 
       stateVersion = "23.11";
 
@@ -41,6 +41,7 @@
           allowAliases = false;
           allowUnfree = true;
         };
+        overlays = [ self.overlays.default ];
       };
 
       mkLib = hostName: rec {
@@ -113,9 +114,9 @@
         };
     in
     {
-      devShells.${defaultSystem} = import ./flake.shells.nix {
-        pkgs = legacyPackages.${defaultSystem};
-      };
+      overlays.default = import ./flake.overlays.nix;
+
+      devShells.${defaultSystem} = import ./flake.shells.nix { pkgs = _pkgs; };
 
       nixosConfigurations = { }
       // mkSystem defaultSystem "nos"
@@ -125,7 +126,5 @@
       // mkHomeManager "stzx" "nos"
       // mkHomeManager "drop" "vnos";
 
-    } // flake-utils.lib.eachDefaultSystem (system: {
-      formatter = legacyPackages.${system}.nixpkgs-fmt;
-    });
+    } // flake-utils.lib.eachDefaultSystem (system: { formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt; });
 }

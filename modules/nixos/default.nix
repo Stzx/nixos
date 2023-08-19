@@ -1,7 +1,10 @@
 {
   imports = [
-    ./sys
     ./desktop
+
     ./hardware.nix
+    ./sys.nix
+
+    ./apps/netdata.nix
   ];
 }
