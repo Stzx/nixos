@@ -1,9 +1,10 @@
-{ config, lib, pkgs, secrets, ... }:
+{ secrets, ... }:
 
 {
   imports = [
+    ./kernel
+
     ./fs.nix
-    ./kernel.nix
     ./network.nix
     ./misc.nix
   ];
