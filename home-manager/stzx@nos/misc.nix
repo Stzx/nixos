@@ -1,4 +1,4 @@
-{ config, lib, dotsPath, secrets, ... }:
+{ config, lib, dotsPath, ... }:
 
 let
   email = "silence.m@hotmail.com";
@@ -29,12 +29,9 @@ in
         enable = true;
         userName = "Stzx";
         userEmail = email;
-      } // secrets.git;
-
-      programs.ssh = {
-        inherit (secrets.ssh) matchBlocks;
-        enable = true;
       };
+
+      programs.ssh.enable = true;
     }
 
     (lib.mkIf lib.my.haveAnyDE {

@@ -1,24 +1,11 @@
-{ config, lib, pkgs, secrets, ... }:
+{ config, lib, secrets, ... }:
 
 let
-  inherit (lib.my) nvmeEui btrfsOptions btrfsMountUnit f2fsMountUnit;
+  inherit (lib.my) nvmeEui btrfsOptions;
 
-  nvme = "${nvmeEui secrets.disks.origin-eui}";
-
-  btrfsUnit = btrfsMountUnit secrets.disks.btrfs;
-
-  f2fsUnit = f2fsMountUnit secrets.disks.f2fs;
+  nvme = "${nvmeEui secrets.origin-eui}";
 in
 {
-  zramSwap.enable = true;
-
-  systemd = {
-    mounts = btrfsUnit.mounts ++ f2fsUnit.mounts;
-    automounts = btrfsUnit.automounts ++ f2fsUnit.automounts;
-  };
-
-  virtualisation.docker.storageDriver = "btrfs";
-} // {
   disko.devices = {
     disk.nvme = {
       type = "disk";
@@ -63,4 +50,8 @@ in
       };
     };
   };
+
+  zramSwap.enable = true;
+
+  virtualisation.docker.storageDriver = "btrfs";
 }

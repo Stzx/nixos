@@ -1,10 +1,5 @@
-{ lib, pkgs, secrets, ... }:
+{ lib, pkgs, ... }:
 
-let
-  inherit (secrets) flake;
-
-  nixosDiff = "nix profile diff-closures --profile /nix/var/nix/profiles/system";
-in
 {
   nix = {
     settings.substituters = [
@@ -73,13 +68,15 @@ in
       p7zip
     ];
     shellAliases = lib.mkForce {
-      rb = ''time sudo nixos-rebuild boot --flake "${flake}?submodules=1#$(hostname)" && ${nixosDiff}'';
+      npdc = "nix profile diff-closures --profile /nix/var/nix/profiles/system";
 
-      rr = ''time sudo nixos-rebuild switch --flake "${flake}?submodules=1#$(hostname)" && ${nixosDiff}'';
+      rb = "time sudo nixos-rebuild boot --flake \"$_FLAKE?submodules=1#$(hostname)\"";
 
-      rh = ''time home-manager switch --flake "${flake}?submodules=1#$USER@$(hostname)" && nix profile diff-closures'';
+      rs = "time sudo nixos-rebuild switch --flake \"$_FLAKE?submodules=1#$(hostname)\"";
 
-      ih = ''time nix run home-manager -- switch --flake "${flake}?submodules=1#$USER@$(hostname)"'';
+      rh = "time home-manager switch --flake \"$_FLAKE?submodules=1#$USER@$(hostname)\"";
+
+      ih = "time nix run home-manager -- switch --flake \"$_FLAKE?submodules=1#$USER@$(hostname)\"";
     };
   };
 

@@ -4,6 +4,3 @@
 [submodule "dots/alacritty/alacritty-theme"]
 	path = dots/alacritty/alacritty-theme
 	url = https://github.com/alacritty/alacritty-theme
-[submodule "rabbit-hole"]
-	path = rabbit-hole
-	url = ./../nixos-secrets

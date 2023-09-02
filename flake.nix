@@ -23,17 +23,20 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-secrets = {
+      url = "git+file:./../flake-secrets";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, disko, ... }:
+  outputs = { self, nixpkgs, home-manager, flake-utils, disko, flake-secrets, ... }:
     let
       _pkgs = nixpkgs.legacyPackages.${defaultSystem};
 
       stateVersion = "23.11";
 
       defaultSystem = "x86_64-linux";
-
-      secrets = import ./rabbit-hole/secrets.nix;
 
       mkPkgs = system: import nixpkgs {
         localSystem = { inherit system; };
@@ -58,17 +61,19 @@
         let
           inherit (mkLib hostName) nixos lib;
 
-          user = ./. + "/home-manager/${username}";
+          mark = "${username}@${hostName}";
+
+          user = ./. + "/home-manager/${mark}";
+
+          hmSecrets = flake-secrets.lib.hmModule username hostName;
         in
         {
-          "${username}@${hostName}" = home-manager.lib.homeManagerConfiguration rec {
+          "${mark}" = home-manager.lib.homeManagerConfiguration {
             inherit (nixos.nixpkgs) pkgs;
             inherit lib;
 
-            extraSpecialArgs = { inherit nixos secrets; dotsPath = ./dots; };
+            extraSpecialArgs = { inherit nixos; dotsPath = ./dots; } // lib.optionalAttrs (hmSecrets ? secrets) { inherit (hmSecrets) secrets; };
             modules = [
-              secrets.home-manager
-
               ./home-manager
               ./modules/home-manager
 
@@ -79,7 +84,9 @@
                   homeDirectory = "/home/${username}";
                 };
               }
-            ] ++ lib.optional (builtins.pathExists user) user;
+            ]
+            ++ lib.optional (builtins.pathExists user) user
+            ++ lib.optional (hmSecrets ? module) hmSecrets.module;
           };
         };
 
@@ -87,15 +94,14 @@
         let
           inherit (mkLib hostName) lib;
 
-          pkgs = mkPkgs system;
+          osSecrets = flake-secrets.lib.nixosModule hostName;
         in
         {
           "${hostName}" = lib.nixosSystem {
             inherit lib;
 
-            specialArgs = { inherit secrets; };
+            specialArgs = lib.optionalAttrs (osSecrets ? secrets) { inherit (osSecrets) secrets; };
             modules = [
-              secrets.nixos
               disko.nixosModules.disko
 
               ./nixos
@@ -103,13 +109,13 @@
               (./. + "/nixos/${hostName}")
 
               {
-                nixpkgs = { inherit pkgs; };
+                nixpkgs = { pkgs = (mkPkgs system); };
 
                 system = { inherit stateVersion; };
 
                 networking = { inherit hostName; };
               }
-            ];
+            ] ++ lib.optional (osSecrets ? module) osSecrets.module;
           };
         };
     in

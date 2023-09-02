@@ -1,4 +1,4 @@
-{ secrets, ... }:
+{ ... }:
 
 {
   imports = [
@@ -22,7 +22,6 @@
       isNormalUser = true;
       description = "Silece Tai";
       extraGroups = [ "wheel" "video" "audio" "docker" "keys" "boinc" ];
-      initialHashedPassword = secrets.users.stzx;
     };
   };
 }

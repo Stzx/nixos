@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = [ pkgs.croc ];
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+    config.global.warn_timeout = "30s";
+  };
 
   home.file = {
     ".cargo/config.toml".text = ''
@@ -14,13 +22,5 @@
       [build]
       rustc-wrapper = "${pkgs.sccache}/bin/sccache"
     '';
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    config.global.warn_timeout = "30s";
   };
 }

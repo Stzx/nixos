@@ -1,19 +1,9 @@
-{ config, lib, secrets, ... }:
+{ lib, ... }:
 
 let
-  inherit (secrets.network) IP HOP proxy noProxy;
-
-  envVars = {
-    HTTP_PROXY = proxy;
-    HTTPS_PROXY = proxy;
-    NO_PROXY = noProxy;
-  };
+  gateway = [ "192.168.254.254" ];
 in
 {
-  nix = { inherit envVars; };
-
-  systemd.services.docker.environment = envVars;
-
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "cake";
 
@@ -29,12 +19,13 @@ in
   systemd.network = {
     enable = true;
     networks = {
-      "20-wan" = {
+      "20-wan" = rec {
+        inherit gateway;
+
         name = "en*";
-        address = lib.singleton "${IP}/24";
-        gateway = HOP;
-        dns = HOP;
-        ntp = HOP;
+        address = [ "192.168.254.253/24" ];
+        dns = gateway;
+        ntp = gateway;
         networkConfig = {
           DHCP = "ipv6";
           IPv6AcceptRA = true;
@@ -47,7 +38,7 @@ in
     };
   };
 
-  networking.timeServers = HOP;
+  networking.timeServers = gateway;
 
   services = {
     resolved.enable = true;
