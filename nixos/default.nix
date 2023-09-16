@@ -51,6 +51,8 @@
     radvd
   ];
 
+  documentation.doc.enable = false;
+
   environment = {
     systemPackages = with pkgs; [
       smartmontools
@@ -91,6 +93,7 @@
     enable = true;
     settings = {
       show_thread_names = true;
+      show_merged_command = true;
       shadow_other_users = true;
       highlight_base_name = true;
       highlight_threads = true;
