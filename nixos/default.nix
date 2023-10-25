@@ -82,6 +82,10 @@
     };
   };
 
+  environment.etc."gai.conf".text = ''
+    precedence ::ffff:0:0/96 100
+  '';
+
   programs.git.enable = true;
 
   programs.gnupg.agent = {

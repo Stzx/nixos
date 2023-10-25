@@ -65,6 +65,7 @@ in
             "browser.shell.checkDefaultBrowser" = false;
             "browser.tabs.inTitlebar" = 1;
 
+            "network.dns.disableIPv6" = true;
             "network.trr.mode" = 5;
             "network.predictor.enabled" = false;
             "network.captive-portal-service.enabled" = false;
