@@ -1,4 +1,4 @@
-{ nixos, config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -10,22 +10,24 @@
     ./gtk.nix
     {
       home.packages = with pkgs; [
+        calibre
         librecad
         libreoffice
-        texlive.combined.scheme-full
 
-        calibre
+        texlive.combined.scheme-full
+        texstudio
+
+        mpv
+        nomacs
         obs-studio
         qbittorrent
         telegram-desktop
 
-        mpv
-        nomacs
+        ffmpeg
+        wireshark
       ];
     }
   ];
-
-  home.packages = with pkgs; [ ffmpeg ];
 
   want = {
     adb = true;

@@ -32,14 +32,15 @@ in
       hardware.opengl = {
         enable = true;
         driSupport = true;
-        extraPackages = [ pkgs.ocl-icd ];
       };
 
       environment = {
         systemPackages = with pkgs; [
-          opencl-info
-          libva-utils
           vulkan-tools
+
+          opencl-info
+
+          libva-utils
         ];
         sessionVariables = {
           NIXOS_OZONE_WL = "1";

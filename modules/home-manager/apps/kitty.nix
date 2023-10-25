@@ -1,4 +1,4 @@
-{ config, lib, pkgs, dotsPath, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.want;
