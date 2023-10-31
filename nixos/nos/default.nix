@@ -11,7 +11,7 @@
 
   features = {
     cpu.amd = true;
-    gpu.nvidia = true;
+    gpu.amd = true;
     desktop.kde = true;
     netdata = true;
   };

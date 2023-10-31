@@ -59,6 +59,17 @@ in
       };
     })
 
+    (lib.mkIf cfg.gpu.amd {
+      services.xserver.videoDrivers = [ "modesetting" ];
+
+      hardware.opengl.extraPackages = with pkgs; [
+        amdvlk
+      ] ++ (with pkgs.rocmPackages; [
+        clr
+        clr.icd
+      ]);
+    })
+
     (lib.mkIf cfg.gpu.nvidia {
       services.xserver.videoDrivers = [ "nvidia" ];
 

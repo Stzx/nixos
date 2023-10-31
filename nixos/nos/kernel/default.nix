@@ -17,7 +17,7 @@ in
     kernelPackages = linuxPackages_xanmod;
     initrd = {
       includeDefaultModules = false;
-      kernelModules = lib.mkForce [ ];
+      kernelModules = lib.mkForce [ "amdgpu" ];
     };
     kernelParams = [ ];
     kernelModules = lib.mkForce [ ];
