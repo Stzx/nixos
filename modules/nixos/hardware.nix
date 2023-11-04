@@ -60,21 +60,19 @@ in
     })
 
     (lib.mkIf cfg.gpu.amd {
-      services.xserver.videoDrivers = [ "modesetting" ];
-
       hardware.opengl.extraPackages = with pkgs; [
         amdvlk
       ] ++ (with pkgs.rocmPackages; [
         clr
         clr.icd
       ]);
+
+      environment.systemPackages = [ pkgs.radeontop ];
+
+      services.xserver.videoDrivers = [ "modesetting" ];
     })
 
     (lib.mkIf cfg.gpu.nvidia {
-      services.xserver.videoDrivers = [ "nvidia" ];
-
-      hardware.opengl.extraPackages = [ pkgs.nvidia-vaapi-driver ];
-
       hardware.nvidia = {
         package = config.boot.kernelPackages.nvidiaPackages.production;
         nvidiaSettings = false;
@@ -82,6 +80,8 @@ in
         modesetting.enable = true;
         powerManagement.enable = true;
       };
+
+      hardware.opengl.extraPackages = [ pkgs.nvidia-vaapi-driver ];
 
       environment.sessionVariables = {
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -94,6 +94,8 @@ in
 
         MOZ_DISABLE_RDD_SANDBOX = "1";
       };
+
+      services.xserver.videoDrivers = [ "nvidia" ];
     })
   ];
 }
