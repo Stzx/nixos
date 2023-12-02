@@ -33,6 +33,10 @@ in
         vim.opt.tabstop = 4
         vim.opt.relativenumber = true
 
+        vim.opt.swapfile = false
+        vim.opt.backup = false
+        vim.opt.writebackup = false
+
         require('lualine').setup()
         require('gitsigns').setup()
         require('neo-tree').setup()
