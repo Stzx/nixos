@@ -23,7 +23,6 @@
         qbittorrent
         telegram-desktop
 
-        ffmpeg
         wireshark
       ];
     }

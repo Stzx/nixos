@@ -21,7 +21,12 @@
       uid = 1000;
       isNormalUser = true;
       description = "Silece Tai";
-      extraGroups = [ "wheel" "video" "audio" "docker" "keys" "boinc" ];
+      extraGroups = [ "wheel" "audio" "video" ] ++ [
+        "keys"
+        "docker"
+        "boinc"
+        "wireshark"
+      ];
     };
   };
 }
