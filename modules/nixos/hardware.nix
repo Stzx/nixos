@@ -67,7 +67,7 @@ in
         clr.icd
       ]);
 
-      environment.systemPackages = [ pkgs.radeontop ];
+      environment.systemPackages = [ pkgs.amdgpu_top ];
 
       services.xserver.videoDrivers = [ "modesetting" ];
     })
