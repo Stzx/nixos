@@ -5,7 +5,6 @@ let
 
   netdata = pkgs.netdata.override {
     withCups = false;
-    withDBengine = false;
     withIpmi = false;
     withCloud = false;
     withConnPubSub = false;
