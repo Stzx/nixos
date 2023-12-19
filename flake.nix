@@ -34,7 +34,7 @@
     let
       _pkgs = nixpkgs.legacyPackages.${defaultSystem};
 
-      stateVersion = "23.11";
+      stateVersion = "24.05";
 
       defaultSystem = "x86_64-linux";
 
