@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, my, ... }:
 
 {
   imports = [ ./kde ];
 
-  config = lib.mkIf lib.my.haveAnyDE {
+  config = lib.mkIf my.haveAnyDE {
     fonts = {
       packages = with pkgs; [
         noto-fonts

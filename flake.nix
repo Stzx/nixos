@@ -98,9 +98,7 @@
         in
         {
           "${hostName}" = lib.nixosSystem {
-            inherit lib;
-
-            specialArgs = lib.optionalAttrs (osSecrets ? secrets) { inherit (osSecrets) secrets; };
+            specialArgs = { inherit (lib) my; } // lib.optionalAttrs (osSecrets ? secrets) { inherit (osSecrets) secrets; };
             modules = [
               disko.nixosModules.disko
 
