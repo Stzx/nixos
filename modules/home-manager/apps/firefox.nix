@@ -106,6 +106,7 @@ in
             "widget.use-xdg-desktop-portal.mime-handler" = 1;
 
             "media.eme.enabled" = true;
+            "media.ffmpeg.vaapi.enabled" = true;
 
             "toolkit.telemetry.enabled" = false;
             "toolkit.telemetry.reportingpolicy.firstRun" = false;
@@ -117,9 +118,6 @@ in
     # FIXME: https://github.com/elFarto/nvidia-vaapi-driver
     (lib.mkIf useNvidia {
       programs.firefox.profiles.${profile}.settings = {
-        "media.ffmpeg.vaapi.enabled" = true;
-        "media.rdd-ffmpeg.enabled" = true;
-
         "gfx.x11-egl.force-enabled" = true;
 
         "widget.dmabuf.force-enabled" = true;
